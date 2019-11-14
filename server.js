@@ -5,9 +5,7 @@ const server = http.createServer((req, res) => {
     'Content-Type': 'text/html; charset=utf-8'
   });
 
-  fs.readFile('./public/home.html', 'utf8', (err, data) => {
-    res.end(data);
-  });
+  fs.createReadStream(__dirname + '/home.html', 'utf8').pipe(res);
 });
 
 server.listen(3000, 'localhost', () => {
