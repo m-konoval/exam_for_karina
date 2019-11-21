@@ -18,27 +18,27 @@ $(document).ready(function () {
     });
 
 
-    function getData() {
+    // function getData() {
 
-        $.ajax({
-            url: "https://informer.minfin.com.ua/ua/gen/banks",
-            dataType: "html",
-            method: "GET",
-            success: (data) => {
-                console.log('from AJAX', data);
-            }
-        });
+    //     $.ajax({
+    //         url: "https://informer.minfin.com.ua/ua/gen/banks",
+    //         dataType: "html",
+    //         method: "GET",
+    //         success: (data) => {
+    //             console.log('from AJAX', data);
+    //         }
+    //     });
 
-        var frame = $('iframe#minfin');
+    //     var frame = $('iframe#minfin');
 
-        frame.ready(() => {
-            console.log({
-                "content": frame.contents(),
-                'context': frame.context
-            });
-        })
-    }
-    getData();
+    //     frame.ready(() => {
+    //         console.log({
+    //             "content": frame.contents(),
+    //             'context': frame.context
+    //         });
+    //     })
+    // }
+    // getData();
 
 
     $('.sort-by-code').click(function () {

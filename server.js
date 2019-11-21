@@ -1,13 +1,29 @@
 const fs = require('fs');
+const express = require('express');
 const http = require('http');
-const server = http.createServer((req, res) => {
-  res.writeHead(200, {
-    'Content-Type': 'text/html; charset=utf-8'
+const app = express();
+const cors = require('cors');
+const axios = require('axios');
+
+app.use('/public', express.static('public'));
+
+app.use(cors());
+
+
+
+app.get('/', (req, res) => {
+
+  axios.get('https://informer.minfin.com.ua/ua/gen/banks');
+  res.sendFile(__dirname + '/view/home.html');
+});
+
+app.get('*', (req, res) => {
+
+  axios.get('https://informer.minfin.com.ua/ua/gen/banks').then(r => {
+    console.log(r);
+    res.send({test: r});
   });
-
-  fs.createReadStream(__dirname + '/home.html', 'utf8').pipe(res);
 });
 
-server.listen(3000, 'localhost', () => {
-  console.log('it works !');
-});
+
+app.listen(3000);
